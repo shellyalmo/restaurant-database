@@ -1,0 +1,11 @@
+{
+  "name": "restaurant-database",
+  "version": "1.0.0",
+  "description": "Restaurants database with MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shelly Almoznino",
+  "license": "MIT"
+}
