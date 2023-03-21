@@ -59,3 +59,21 @@ export const updateRestaurant = asyncHandler(async (req, res, next) => {
     data: restaurant,
   });
 });
+
+// @desc    Delete a Restaurant
+// @route   DELETE /api/v1/restaurants/:id
+// @access  Private
+export const deleteRestaurant = asyncHandler(async (req, res, next) => {
+  const restaurant = await Restaurant.findById(req.params.id);
+
+  if (!restaurant) {
+    return next(new Error(`Restaurant with ID ${req.params.id} not found`));
+  }
+
+  restaurant.deleteOne();
+
+  res.status(200).json({
+    success: true,
+    data: {},
+  });
+});
