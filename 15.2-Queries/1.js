@@ -121,6 +121,22 @@ console.log(
 );
 console.log(await coll.findOne({ name: "yoffi toffi" }));
 
+console.log(
+  "1.11 - Update all restaurants to be kosher",
+  await coll.updateMany({}, { $set: { kosher: true } })
+);
+
+// temp allows us to re-run this script without errors the second time
+const temp = await coll.findOne({ name: "burgerim" });
+console.log(
+  "1.12 - Delete a specific restaurant",
+  await coll.deleteOne({ name: "burgerim" })
+);
+await coll.insertOne(temp);
+
+const tempAll = await coll.find({});
+console.log("1.13 - Delete all restaurants", await coll.deleteMany({}));
+await coll.insertMany(tempAll);
 // finish
 
 await client.close();
