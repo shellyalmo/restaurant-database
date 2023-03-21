@@ -85,16 +85,30 @@ console.log(
     )
     .toArray()
 );
+
 console.log(
-  "1.7. - Write a MongoDB query that should display all restaurants in ascending order by restaurant name",
+  "1.8 - Write a MongoDB query that should display all restaurants in ascending order by city names.",
   await coll
     .find(
       {},
       {
-        sort: { name: 1 },
+        sort: { "address.city": 1 },
       }
     )
     .toArray()
+);
+
+console.log(
+  "1.9 - Update a specific restaurant's name",
+  await coll.findOneAndUpdate(
+    { name: "yoffi toffi" },
+    { $set: { name: "toffi yoffi" } }
+  )
+);
+console.log(await coll.findOne({ name: "toffi yoffi" }));
+await coll.findOneAndUpdate(
+  { name: "toffi yoffi" },
+  { $set: { name: "yoffi toffi" } }
 );
 // finish
 
