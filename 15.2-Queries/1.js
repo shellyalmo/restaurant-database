@@ -110,6 +110,17 @@ await coll.findOneAndUpdate(
   { name: "toffi yoffi" },
   { $set: { name: "yoffi toffi" } }
 );
+
+// not sure how to add an _id during set
+console.log(
+  "1.10 - Update a specific restaurant by adding a new review.",
+  await coll.findOneAndUpdate(
+    { name: "yoffi toffi" },
+    { $addToSet: { reviews: { score: 2, date: new Date() } } }
+  )
+);
+console.log(await coll.findOne({ name: "yoffi toffi" }));
+
 // finish
 
 await client.close();
